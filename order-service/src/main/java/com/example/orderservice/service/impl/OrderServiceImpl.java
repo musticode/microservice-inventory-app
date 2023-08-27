@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
                 .sellerId(placeOrderRequest.getSellerId())
                 .build();
 
-        // order save         // TODO order entity -> save the data with status order created
+        // TODO order entity -> save the data with status order created
         //        Order order = Order.builder()
         //                .amount(orderRequest.getTotalAmount())
         //                .orderStatus("CREATED")
@@ -84,6 +84,38 @@ public class OrderServiceImpl implements OrderService {
 
 
         return mapToOrderResponse(order);
+    }
+
+    @Override
+    public OrderStatusResponse setOrderStatus(long orderId, OrderStatusRequest orderStatusRequest) {
+        Order order = orderRepository
+                .findById(orderId)
+                .orElseThrow(
+                        ()-> new RuntimeException("No order")
+                );
+
+        order.setOrderStatus(orderStatusRequest.getOrderStatus());
+        orderRepository.save(order);
+
+        return OrderStatusResponse.builder()
+                .orderId(order.getId())
+                .orderStatus(order.getOrderStatus())
+                .build();
+    }
+
+    @Override
+    public OrderStatusResponse getOrderStatus(long orderId) {
+        Order order = orderRepository
+                .findById(orderId)
+                .orElseThrow(
+                        ()-> new RuntimeException("No order")
+                );
+
+
+        return OrderStatusResponse.builder()
+                .orderId(order.getId())
+                .orderStatus(order.getOrderStatus())
+                .build();
     }
 
 

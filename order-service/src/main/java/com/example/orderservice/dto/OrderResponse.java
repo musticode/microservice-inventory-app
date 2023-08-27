@@ -14,5 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderResponse {
     private long id;
-    List<OrderLineItemResponse> orderLineItems;
+    private long productId;
+    private long totalAmount;
+    private long quantity;
+    private long buyerId;
+    private long sellerId;
 }

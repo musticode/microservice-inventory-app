@@ -26,6 +26,7 @@ public class OrderProducerService {
                 .setHeader(KafkaHeaders.TOPIC, topic.name())
                 .build();
 
+        log.info("Message is sent : {}", message.toString());
         kafkaTemplate.send(message);
     }
 
