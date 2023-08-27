@@ -5,6 +5,7 @@ import com.example.stockservice.dto.PaymentRequest;
 import com.example.stockservice.dto.UpdateBalanceRequest;
 import com.example.stockservice.dto.UserResponse;
 import com.example.stockservice.external.UserService;
+import com.example.stockservice.model.Payment;
 import com.example.stockservice.repository.PaymentRepository;
 import com.example.stockservice.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +46,8 @@ public class PaymentServiceImpl implements PaymentService {
         final double minusBalance = -paymentRequest.getAmount();
         String updatedSenderBalance = userService
                 .updateBalance(
-                        sender.getId(), UpdateBalanceRequest.builder().balance(minusBalance).build()
+                        sender.getId(),
+                        UpdateBalanceRequest.builder().balance(minusBalance).build()
                 )
                 .getBody();
         log.info("Updated Sender balance: {}", updatedSenderBalance);
@@ -53,7 +55,8 @@ public class PaymentServiceImpl implements PaymentService {
         //supplier'a amount ekle
         String updateSupplierBalance = userService
                 .updateBalance(
-                        supplier.getId(), UpdateBalanceRequest.builder().balance(paymentRequest.getAmount()).build()
+                        supplier.getId(),
+                        UpdateBalanceRequest.builder().balance(paymentRequest.getAmount()).build()
                 )
                 .getBody();
         log.info("updateSupplierBalance: {}", updateSupplierBalance);
@@ -61,6 +64,11 @@ public class PaymentServiceImpl implements PaymentService {
         return "PAYMENT OK";
     }
 
+    @Override
+    public Payment getPaymentById(long paymentId) {
+        Payment payment = paymentRepository.findById(paymentId).orElseThrow(()-> new RuntimeException("No payment with id"));
+        return payment;
+    }
 
 
     @KafkaListener(
