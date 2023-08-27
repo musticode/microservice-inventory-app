@@ -15,4 +15,6 @@ public class PlaceOrderRequest {
     private long productId;
     private long totalAmount;
     private long quantity;
+    private long buyerId;
+    private long sellerId;
 }

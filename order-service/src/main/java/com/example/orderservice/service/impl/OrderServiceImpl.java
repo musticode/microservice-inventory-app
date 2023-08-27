@@ -28,6 +28,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderLineItemRepository orderLineItemRepository;
     private final ModelMapper modelMapper;
     private final ProductClient productClient;
+    private final OrderProducerService orderProducerService;
 
     @Override
     public OrderResponse findOrderById(long orderId) {
@@ -44,15 +45,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public OrderResponse placeOrder(PlaceOrderRequest placeOrderRequest) { //
-
-
-
-
-        // order req:    private long productId;
-        //    private long totalAmount;
-        //    private long quantity;
-        //    private PaymentMode paymentMode;
+    public OrderResponse placeOrder(PlaceOrderRequest placeOrderRequest) {
 
         // reduce quantity in client
         productClient.reduceQuantity(placeOrderRequest.getProductId(), placeOrderRequest.getQuantity());
@@ -61,8 +54,9 @@ public class OrderServiceImpl implements OrderService {
                 .productId(placeOrderRequest.getProductId())
                 .quantity(placeOrderRequest.getQuantity())
                 .orderDate(new Date())
-                .orderStatus("ORDERED")
                 .amount(placeOrderRequest.getTotalAmount())
+                .buyerId(placeOrderRequest.getBuyerId())
+                .sellerId(placeOrderRequest.getSellerId())
                 .build();
 
         // order save         // TODO order entity -> save the data with status order created
@@ -76,9 +70,16 @@ public class OrderServiceImpl implements OrderService {
         //
         //        order = orderRepository.save(order);
 
+        // TODO : Order is sent to topic
+        OrderEvent orderEvent = new OrderEvent();
+        orderEvent.setStatus("PENDING");
+        orderEvent.setMessage("Order is pending state");
+        orderEvent.setOrder(order);
 
+        orderProducerService.sendMessage(orderEvent);
 
         // payment service --> doPayment [user'dan al, supplier'a ver kendi içinde farklı client'lar olmalı]
+
 
 
 

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@EnableFeignClients
-@FeignClient(name = "USER-SERVICE")
+
+@FeignClient(name = "USER-SERVICE", url = "http://localhost:8085/api/v1/users")
 public interface UserService {
 
     @GetMapping("/{userId}")
@@ -20,4 +20,5 @@ public interface UserService {
 
     @PostMapping("/update-balance/{userId}")
     ResponseEntity<String> updateBalance(@PathVariable long userId, @RequestBody UpdateBalanceRequest updateBalanceRequest);
+
 }

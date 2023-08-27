@@ -35,13 +35,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updateBalance(long userId, UpdateBalanceRequest updateBalanceRequest) {
+
+        log.info("user id {}", userId);
+
         User user = userRepository
                 .findById(userId)
                 .orElseThrow(
                         ()-> new RuntimeException("No user")
                 );
 
-//        10 - 20
         if (updateBalanceRequest.getBalance() < 0 && (user.getBalance() - updateBalanceRequest.getBalance() < 0) ){
             throw new RuntimeException("Not enough balance");
         }
