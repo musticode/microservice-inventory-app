@@ -1,7 +1,5 @@
-## School Microservices:
-https://www.google.com/search?q=student+management+system+uml&sca_esv=558122945&tbm=isch&sxsrf=AB5stBijMhm4rcrsgHE9qdS_4_v8IS1MZQ:1692365975130&source=lnms&sa=X&ved=2ahUKEwjl8JvGquaAAxU7SvEDHRJ_DJsQ_AUoAXoECAEQAw&biw=1920&bih=883&dpr=1#imgrc=2kII4d-bDBQALM
-route: 
-- 
+## Inventory Microservices
+
 
 
 services dependencies:
