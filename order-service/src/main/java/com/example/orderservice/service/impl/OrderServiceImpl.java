@@ -4,6 +4,7 @@ import com.example.orderservice.dto.*;
 import com.example.orderservice.external.ProductClient;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.model.OrderLineItem;
+import com.example.orderservice.model.OrderStatus;
 import com.example.orderservice.repository.OrderLineItemRepository;
 import com.example.orderservice.repository.OrderRepository;
 import com.example.orderservice.service.OrderService;
@@ -80,11 +81,19 @@ public class OrderServiceImpl implements OrderService {
 
         // payment service --> doPayment [user'dan al, supplier'a ver kendi içinde farklı client'lar olmalı]
 
+        //set order status to "PLACED"
+        OrderStatusRequest orderStatusRequest  = new OrderStatusRequest();
+        orderStatusRequest.setOrderStatus("PLACED");
+        setOrderStatus(order.getId(), orderStatusRequest);
 
 
 
         return mapToOrderResponse(order);
     }
+
+
+
+
 
     @Override
     public OrderStatusResponse setOrderStatus(long orderId, OrderStatusRequest orderStatusRequest) {
@@ -96,6 +105,10 @@ public class OrderServiceImpl implements OrderService {
 
         order.setOrderStatus(orderStatusRequest.getOrderStatus());
         orderRepository.save(order);
+
+        if (orderStatusRequest.getOrderStatus().equals(OrderStatus.DELIVERED.toString())){
+            productClient.reduceQuantity(order.getId(), order.getQuantity()); //order'ı quantity kadar azalt
+        }
 
         return OrderStatusResponse.builder()
                 .orderId(order.getId())

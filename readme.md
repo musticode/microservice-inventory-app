@@ -23,6 +23,7 @@
     -   Create purchase orders for restocking.
     -   Track order status (pending, delivered, etc.).
     -   Deduct stock upon order fulfillment.
+    -    Place Order (Order Placed) -> Ship Order (Order Shipped) -> Deliver Order (Order Delivered), Update Inventory (Inventory Normal) -> Low Inventory Alert (Inventory Low)
 5.  **Reporting:**
 
     -   Generate inventory reports (e.g., stock levels, low stock items).
