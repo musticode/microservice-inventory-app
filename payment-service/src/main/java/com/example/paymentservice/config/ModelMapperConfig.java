@@ -1,4 +1,4 @@
-package com.example.stockservice.config;
+package com.example.paymentservice.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

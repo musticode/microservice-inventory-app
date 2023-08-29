@@ -1,8 +1,8 @@
-package com.example.stockservice.controller;
+package com.example.paymentservice.controller;
 
-import com.example.stockservice.dto.PaymentRequest;
-import com.example.stockservice.model.Payment;
-import com.example.stockservice.service.PaymentService;
+import com.example.paymentservice.dto.PaymentRequest;
+import com.example.paymentservice.model.Payment;
+import com.example.paymentservice.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

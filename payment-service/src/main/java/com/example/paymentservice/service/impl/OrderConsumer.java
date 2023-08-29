@@ -1,4 +1,4 @@
-package com.example.stockservice.service.impl;
+package com.example.paymentservice.service.impl;
 
 
 

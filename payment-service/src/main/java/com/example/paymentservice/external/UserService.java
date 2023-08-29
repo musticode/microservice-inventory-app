@@ -1,10 +1,8 @@
-package com.example.stockservice.external;
+package com.example.paymentservice.external;
 
-import com.example.stockservice.dto.UpdateBalanceRequest;
-import com.example.stockservice.dto.UserResponse;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import com.example.paymentservice.dto.UpdateBalanceRequest;
+import com.example.paymentservice.dto.UserResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

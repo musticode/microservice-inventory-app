@@ -1,13 +1,13 @@
-package com.example.stockservice.service.impl;
+package com.example.paymentservice.service.impl;
 
 import com.example.orderservice.dto.order.OrderEvent;
-import com.example.stockservice.dto.PaymentRequest;
-import com.example.stockservice.dto.UpdateBalanceRequest;
-import com.example.stockservice.dto.UserResponse;
-import com.example.stockservice.external.UserService;
-import com.example.stockservice.model.Payment;
-import com.example.stockservice.repository.PaymentRepository;
-import com.example.stockservice.service.PaymentService;
+import com.example.paymentservice.dto.PaymentRequest;
+import com.example.paymentservice.dto.UpdateBalanceRequest;
+import com.example.paymentservice.dto.UserResponse;
+import com.example.paymentservice.external.UserService;
+import com.example.paymentservice.model.Payment;
+import com.example.paymentservice.repository.PaymentRepository;
+import com.example.paymentservice.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.kafka.annotation.KafkaListener;

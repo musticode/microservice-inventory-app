@@ -1,6 +1,6 @@
-package com.example.stockservice.repository;
+package com.example.paymentservice.repository;
 
-import com.example.stockservice.model.Payment;
+import com.example.paymentservice.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
