@@ -1,16 +1,15 @@
-package com.example.orderservice.dto;
+package com.example.orderservice.dto.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductQuantityRequest {
-    private List<Integer> productIdList;
+public class OrderStatusResponse {
+    private long orderId;
+    private String orderStatus;
 }

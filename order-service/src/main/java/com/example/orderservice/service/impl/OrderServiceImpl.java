@@ -1,6 +1,7 @@
 package com.example.orderservice.service.impl;
 
-import com.example.orderservice.dto.*;
+import com.example.orderservice.dto.order.*;
+import com.example.orderservice.exception.OrderNotFoundException;
 import com.example.orderservice.external.ProductClient;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.model.OrderLineItem;
@@ -11,13 +12,9 @@ import com.example.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository
                 .findById(orderId)
                 .orElseThrow(
-                        ()-> new RuntimeException("No order")
+                        ()-> new OrderNotFoundException("No order")
                 );
 
         return mapToOrderResponse(order);
@@ -100,7 +97,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository
                 .findById(orderId)
                 .orElseThrow(
-                        ()-> new RuntimeException("No order")
+                        ()-> new OrderNotFoundException("No order")
                 );
 
         order.setOrderStatus(orderStatusRequest.getOrderStatus());
@@ -121,7 +118,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository
                 .findById(orderId)
                 .orElseThrow(
-                        ()-> new RuntimeException("No order")
+                        ()-> new OrderNotFoundException("No order")
                 );
 
 

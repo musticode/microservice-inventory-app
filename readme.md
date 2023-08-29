@@ -95,6 +95,111 @@ In this simplified diagram:
 -   `PurchaseOrder` represents a purchase order made to suppliers.
 -   `OrderItem` represents individual items within a purchase order.
 
+### Order Management:
+
+
+**Business Logic:**
+
+1.  **Order Creation:**
+
+    -   Customers can create new orders by selecting products and quantities.
+    -   Orders contain information about the customer, order date, and status.
+2.  **Order Processing:**
+
+    -   Orders move through various stages: Pending, Processing, Shipped, Delivered.
+    -   Staff can update order statuses as they progress.
+3.  **Inventory Deduction:**
+
+    -   Upon order confirmation, products' quantities are deducted from inventory.
+4.  **Payment Processing:**
+
+    -   Handle payment processing and confirmation before order shipment.
+5.  **Shipping and Delivery:**
+
+    -   Generate shipping labels and track order shipments.
+    -   Update order status upon successful delivery.
+6.  **Cancellation and Returns:**
+
+    -   Allow customers to cancel orders or initiate returns.
+    -   Handle refunds or replacements accordingly.
+7.  **Reporting:**
+
+    -   Generate reports on order status, sales, and customer data.
+
+**UML Class Diagram:**
+
+Here's a simplified UML class diagram for the Order Management System:
+
+
+    `+-------------------+          +---------------+
+    |      Customer     |          |     Product   |
+    +-------------------+          +---------------+
+    | - id: Long        |          | - id: Long    |
+    | - name: String    |          | - name: String|
+    | - email: String   |     1..* | - price: BigDecimal|
+    | - address: String |<>--------|- quantity: int|
+    +-------------------+          +---------------+
+             ^                           ^
+             |                           |
+             1                           1
+             |                           | 
+    +-------------------+          +---------------+
+    |       Order       |          | OrderItem    |
+    +-------------------+          +---------------+
+    | - id: Long        |          | - id: Long   |
+    | - orderDate: Date |          | - product: Product|
+    | - status: OrderStatus     1..* | - quantity: int|
+    | - customer: Customer|<>--------|- pricePerUnit: BigDecimal|
+    | - orderItems: List<OrderItem>|  +---------------+
+    +-------------------+
+             ^
+             |
+             1
+             |
+    +-------------------+
+    |    OrderItem      |
+    +-------------------+
+    | - id: Long        |
+    | - product: Product|
+    | - quantity: int   |
+    | - pricePerUnit: BigDecimal|
+    +-------------------+` 
+
+In this diagram:
+
+-   `Customer` represents the customers who place orders.
+-   `Product` represents the products available for purchase.
+-   `Order` represents the orders placed by customers.
+-   `OrderItem` represents individual items within an order.
+
+**State Transition Diagram:**
+
+Here's a simplified state transition diagram for order statuses:
+
+```
+    +-------------+
+    |   Pending   |         +------------+
+    +-------------+         | Processing |
+       |    ^               +------------+
+       v    |                     |    ^
+    +------------+                v    |
+    |   Shipped  |             +----------+
+    +------------+             | Delivered|
+                               +----------+
+```
+
+
+In this diagram:
+
+-   Orders start in the "Pending" state.
+-   They can transition to "Processing" when they are being prepared for shipment.
+-   From "Processing," they can transition to "Shipped" when they are out for delivery.
+-   Finally, from "Shipped," they transition to "Delivered" when they are successfully delivered to the customer.
+
+Please note that this is a simplified representation, and real-world systems might have more complex state transitions and additional classes for handling various scenarios.
+
+
+
 ---
 ### Test endpoints: 
 order create

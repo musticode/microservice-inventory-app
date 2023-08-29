@@ -1,5 +1,4 @@
-package com.example.orderservice.dto;
-
+package com.example.orderservice.dto.order;
 
 import com.example.orderservice.model.Order;
 import lombok.AllArgsConstructor;
@@ -8,11 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class OrderEvent {
-    private String message;
-    private String status;
-    private Order order;
+public class OrderLineItemResponse {
+    private Long id;
+    private int quantity;
+    private long productId;
 }

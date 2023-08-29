@@ -1,11 +1,9 @@
 package com.example.orderservice.external;
 
 import com.example.orderservice.constant.ProductClientConstant;
-import com.example.orderservice.dto.ProductQuantityRequest;
-import com.example.orderservice.dto.ProductResponse;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import com.example.orderservice.dto.product.ProductQuantityRequest;
+import com.example.orderservice.dto.product.ProductResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,9 @@
 package com.example.orderservice.service;
 
-import com.example.orderservice.dto.OrderResponse;
-import com.example.orderservice.dto.OrderStatusRequest;
-import com.example.orderservice.dto.OrderStatusResponse;
-import com.example.orderservice.dto.PlaceOrderRequest;
+import com.example.orderservice.dto.order.OrderResponse;
+import com.example.orderservice.dto.order.OrderStatusRequest;
+import com.example.orderservice.dto.order.OrderStatusResponse;
+import com.example.orderservice.dto.order.PlaceOrderRequest;
 
 public interface OrderService {
     OrderResponse findOrderById(long orderId);

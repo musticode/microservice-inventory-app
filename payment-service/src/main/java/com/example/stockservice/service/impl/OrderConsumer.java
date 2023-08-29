@@ -2,7 +2,7 @@ package com.example.stockservice.service.impl;
 
 
 
-import com.example.orderservice.dto.OrderEvent;
+import com.example.orderservice.dto.order.OrderEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;

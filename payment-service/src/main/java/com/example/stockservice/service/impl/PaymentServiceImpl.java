@@ -1,6 +1,6 @@
 package com.example.stockservice.service.impl;
 
-import com.example.orderservice.dto.OrderEvent;
+import com.example.orderservice.dto.order.OrderEvent;
 import com.example.stockservice.dto.PaymentRequest;
 import com.example.stockservice.dto.UpdateBalanceRequest;
 import com.example.stockservice.dto.UserResponse;
