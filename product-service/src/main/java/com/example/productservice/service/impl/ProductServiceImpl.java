@@ -10,6 +10,8 @@ import com.example.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -37,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable("product")
     public List<ProductResponse> findProducts() {
         return productRepository
                 .findAll()
@@ -61,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CachePut(value = "product", key = "#productId")
     public ProductResponse updateProduct(long productId, ProductCreateRequest productCreateRequest) {
 
         Product product = productRepository
