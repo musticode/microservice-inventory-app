@@ -5,6 +5,7 @@ import com.example.identityservice.model.AuthRequest;
 import com.example.identityservice.model.user.UserCreateRequest;
 import com.example.identityservice.service.AuthService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/auth")
+@Slf4j
 public class AuthController {
     @Autowired
     private AuthService authService;
@@ -26,6 +28,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String addNewUser(@RequestBody UserCreateRequest user) {
+        log.info("REGISTER METHOD");
         return userDetailClient.createUser(user).toString();
     }
 

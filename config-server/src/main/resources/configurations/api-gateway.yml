@@ -28,3 +28,7 @@ spring:
           uri: http://localhost:8085
           predicates:
             - Path=/api/v1/users/**
+        - id: IDENTITY-SERVICE
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/v1/auth/**
